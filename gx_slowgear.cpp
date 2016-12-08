@@ -18,14 +18,13 @@
  */
 
 
-
 #include <cstdlib>
 #include <cmath>
 #include <iostream>
 #include <cstring>
 #include <unistd.h>
 
-///////////////////////// memlock rt ///////////////////////////////////
+///////////////////////// MACRO SUPPORT ////////////////////////////////
 
 #define __rt_func __attribute__((section(".rt.text")))
 #define __rt_data __attribute__((section(".rt.data")))
@@ -61,6 +60,7 @@ template <>      inline int32_t faustpower<1>(int32_t x)
 {
   return x;
 }
+
 ////////////////////////////// LOCAL INCLUDES //////////////////////////
 
 #include "gx_slowgear.h"        // define struct PortIndex
