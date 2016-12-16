@@ -21,8 +21,8 @@
  * ----------------------------------------------------------------------------
  */
 
-#ifndef __GTK_KNOB_H__
-#define __GTK_KNOB_H__
+#ifndef __GTK_SLOW_KNOB_H__
+#define __GTK_SLOW_KNOB_H__
 
 #ifdef __cplusplus
 extern "C" {
@@ -33,21 +33,21 @@ extern "C" {
 
 G_BEGIN_DECLS
 
-#define GTK_TYPE_KNOB          (gtk_knob_get_type())
-#define GTK_KNOB(obj)          (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_KNOB, GtkKnob))
-#define GTK_IS_KNOB(obj)       (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_KNOB))
-#define GTK_KNOB_CLASS(klass)  (G_TYPE_CHECK_CLASS_CAST ((klass),  GTK_TYPE_KNOB, GtkKnobClass))
-#define GTK_IS_KNOB_CLASS(obj) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GTK_TYPE_KNOB))
-#define GTK_KNOB_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_KNOB, GtkKnobClass))
+#define GTK_TYPE_SLOW_KNOB          (gtk_knob_get_type())
+#define GTK_SLOW_KNOB(obj)          (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_SLOW_KNOB, GtkSlowKnob))
+#define GTK_IS_SLOW_KNOB(obj)       (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_SLOW_KNOB))
+#define GTK_SLOW_KNOB_CLASS(klass)  (G_TYPE_CHECK_CLASS_CAST ((klass),  GTK_TYPE_SLOW_KNOB, GtkSlowKnobClass))
+#define GTK_IS_SLOW_KNOB_CLASS(obj) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GTK_TYPE_SLOW_KNOB))
+#define GTK_SLOW_KNOB_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_SLOW_KNOB, GtkSlowKnobClass))
 
-typedef struct _GtkKnob GtkKnob;
-typedef struct _GtkKnobClass GtkKnobClass;
+typedef struct _GtkSlowKnob GtkSlowKnob;
+typedef struct _GtkSlowKnobClass GtkSlowKnobClass;
 
-struct _GtkKnob {
+struct _GtkSlowKnob {
 	GtkRange parent;
 };
 
-struct _GtkKnobClass {
+struct _GtkSlowKnobClass {
 	GtkRangeClass parent_class;
 };
 
