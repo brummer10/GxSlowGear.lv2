@@ -54,6 +54,14 @@ all : check $(NAME)
 	else echo $(RED)"sorry, build failed"; fi
 	@echo $(NONE)
 
+mod : check nogui
+	@mkdir -p ./$(BUNDLE)
+	@cp -R ./MOD/* ./$(BUNDLE)
+	@mv ./*.so ./$(BUNDLE)
+	@if [ -f ./$(BUNDLE)/$(NAME).so ]; then echo $(BLUE)"build finish, now run make install"; \
+	else echo $(RED)"sorry, build failed"; fi
+	@echo $(NONE)
+
 check :
 ifdef ARMCPU
 	@echo $(RED)ARM CPU DEDECTED, please check the optimization flags
@@ -69,17 +77,24 @@ resources : gui/resource.xml
 clean :
 	@rm -f $(NAME).so
 	@rm -rf ./$(BUNDLE)
-	@echo ". ." $(BLUE)", done"$(NONE)
+	@echo ". ." $(BLUE)", clean up"$(NONE)
 
-install : all
+install :
+ifneq ("$(wildcard ./$(BUNDLE))","")
 	@mkdir -p $(DESTDIR)$(INSTALL_DIR)/$(BUNDLE)
-	install ./$(BUNDLE)/* $(DESTDIR)$(INSTALL_DIR)/$(BUNDLE)
+	cp -r ./$(BUNDLE)/* $(DESTDIR)$(INSTALL_DIR)/$(BUNDLE)
 	@echo ". ." $(BLUE)", done"$(NONE)
+else
+	@echo ". ." $(BLUE)", you must build first"$(NONE)
+endif
 
 uninstall :
 	@rm -rf $(INSTALL_DIR)/$(BUNDLE)
 	@echo ". ." $(BLUE)", done"$(NONE)
 
-$(NAME) :
+$(NAME) : clean
 	$(CXX) $(CXXFLAGS) $(OBJECTS) $(LDFLAGS) -o $(NAME).so
 	$(CXX) $(CXXFLAGS) -Wl,-z,nodelete -std=c++11  $(GUI_OBJECTS) $(GUI_LDFLAGS) -o $(NAME)_ui.so
+
+nogui : clean
+	$(CXX) $(CXXFLAGS) $(OBJECTS) $(LDFLAGS) -o $(NAME).so
